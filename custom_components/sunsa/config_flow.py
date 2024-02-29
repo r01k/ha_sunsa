@@ -102,7 +102,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=vol.Schema(
                 {
-                    vol.Required(CONF_EMAIL): str,
+                    vol.Required(CONF_EMAIL): str,  # FIXME What to use for userid?
                     vol.Required(CONF_USERNAME): int,
                     vol.Required(CONF_API_KEY): str,
                 }
