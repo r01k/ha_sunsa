@@ -1,0 +1,11 @@
+{
+  "domain": "sunsa",
+  "name": "Sunsa",
+  "integration_type":  "device",
+  "version": "1.0.0",
+  "config_flow": true,
+  "documentation": "https://github.com/r01k/ha_sunsa",
+  "requirements": ["git+https://github.com/r01k/Pysunsa@master"],
+  "codeowners": [],
+  "iot_class": "cloud_polling"
+}

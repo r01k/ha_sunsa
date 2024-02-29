@@ -1,0 +1,11 @@
+.idea/
+__pycache__/
+*env3*/
+frozen/
+build/
+dist/
+*.dat
+*.exe
+*.spec
+Temp.ink
+venv.bat

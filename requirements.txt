@@ -1,0 +1,1 @@
+pysunsa @ git+https://github.com/r01k/Pysunsa@master

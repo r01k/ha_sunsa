@@ -1,0 +1,1 @@
+Custom Home Assistant component to integrate all [Sunsa smart blind wands](https://sunsawands.com/) linked to a Sunsa account. This integration leverages the public [Sunsa REST cloud API](https://app.swaggerhub.com/apis/Sunsa/Sunsa).
