@@ -1,8 +1,11 @@
-"""Config flow for Fully Kiosk Browser integration."""
+
+
+"""Config flow for Sunsa integration."""
+
+
 from __future__ import annotations
 
 import asyncio
-import json
 from typing import Any
 
 from aiohttp.client_exceptions import ClientConnectorError
@@ -12,20 +15,18 @@ import voluptuous as vol
 
 from homeassistant import config_entries
 from homeassistant.const import (
+    CONF_EMAIL,
     CONF_USERNAME,
     CONF_API_KEY,
-    CONF_EMAIL,
-    CONF_NAME
 )
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.device_registry import format_mac
 
-from .const import DOMAIN, LOGGER, IDDEVICE
+from .const import DOMAIN, LOGGER
 
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Fully Kiosk Browser."""
+    """Handle a config flow for Sunsa."""
 
     VERSION = 1
 
@@ -59,23 +60,6 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         else:
             return devices
 
-    async def _create_entry(
-        self,
-        device_info: dict[str, Any],
-        user_input: dict[str, Any],
-    ) -> FlowResult | None:
-
-        await self.async_set_unique_id(
-            device_info[IDDEVICE],
-            raise_on_progress=False
-        )
-        self._abort_if_unique_id_configured(updates=user_input)
-
-        return self.async_create_entry(
-            title=device_info[CONF_NAME],
-            data={IDDEVICE: device_info[IDDEVICE]}
-        )
-
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
@@ -85,25 +69,29 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
 
-            devices = await self.validate_user_input(
+            if await self.validate_user_input(
                 user_input,
                 errors,
                 description_placeholders=placeholders
-            )
-            for device in devices:
-                result = await self._create_entry(
-                    device_info=device,
-                    user_input=user_input
+            ):
+                await self.async_set_unique_id(
+                    user_input[CONF_EMAIL].lower(),
+                    raise_on_progress=False
                 )
-                # TODO How to create an entry for each device?
-                return result
+                self._abort_if_unique_id_configured(updates=user_input)
+
+                return self.async_create_entry(
+                    title=user_input[CONF_EMAIL].lower(),
+                    data=user_input
+                )
 
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
                 {
-                    vol.Required(CONF_EMAIL): str,  # FIXME What to use for userid?
-                    vol.Required(CONF_USERNAME): int,
+                    # FIXME What to use for userid?
+                    vol.Required(CONF_EMAIL): str,
+                    vol.Required(CONF_USERNAME): str,
                     vol.Required(CONF_API_KEY): str,
                 }
             ),

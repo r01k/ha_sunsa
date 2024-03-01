@@ -1,9 +1,11 @@
 
 # https://developers.home-assistant.io/docs/integration_fetching_data/#coordinated-single-api-poll-for-data-for-all-entities
 
-"""Provides the Fully Kiosk Browser DataUpdateCoordinator."""
+"""Provides the Sunsa DataUpdateCoordinator."""
+
+
 import asyncio
-from typing import Any, cast
+from typing import Any
 
 from pysunsa import Pysunsa
 from pysunsa.exceptions import PysunsaError
@@ -14,31 +16,33 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .const import LOGGER, UPDATE_INTERVAL, IDDEVICE, APIURL
+from .const import LOGGER, UPDATE_INTERVAL, DOMAIN, IDDEVICE
 
 
 class SunsaDataUpdateCoordinator(DataUpdateCoordinator):
-    """Sunsa update coordinator."""
+    """Coordinator is responsible for updating devices."""
 
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None:
         """Initialize."""
+        super().__init__(
+            hass,
+            LOGGER,
+            name=DOMAIN,
+            update_interval=UPDATE_INTERVAL,
+        )
         self.sunsa = Pysunsa(
             async_get_clientsession(hass),
             entry.data[CONF_USERNAME],
             entry.data[CONF_API_KEY]
         )
-        super().__init__(
-            hass,
-            LOGGER,
-            name=entry.data[IDDEVICE],
-            update_interval=UPDATE_INTERVAL,
-        )
 
     async def _async_update_data(self) -> dict[str, Any]:
-        """Fetch data from API endpoint."""
+        """Fetch devices data from Sunsa."""
         try:
             async with asyncio.timeout(15):
-                device_info = await self.sunsa.get_device_info(self.name)
-                return cast(dict[str, Any], device_info)
+                devices = await self.sunsa.get_devices()
         except PysunsaError as error:
             raise UpdateFailed(error) from error
+
+        # Updated info for all devices
+        return {dev[IDDEVICE]: dev for dev in devices}
