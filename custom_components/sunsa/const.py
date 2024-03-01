@@ -8,8 +8,9 @@ from typing import Final
 
 DOMAIN: Final = "sunsa"
 IDDEVICE: Final = "idDevice"
-VALUE = "value"
-UNIT = "unit"
+VALUE: Final = "value"
+UNIT: Final = "unit"
+TEXT: Final = "text"
 
 LOGGER = logging.getLogger(__package__)
-UPDATE_INTERVAL = timedelta(seconds=20)
+UPDATE_INTERVAL = timedelta(seconds=30)

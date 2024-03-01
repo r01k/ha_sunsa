@@ -7,7 +7,6 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -21,7 +20,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .const import DOMAIN, VALUE
+from .const import DOMAIN, VALUE, TEXT
 from .coordinator import SunsaDataUpdateCoordinator
 from .entity import SunsaEntity
 
@@ -52,6 +51,18 @@ SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
         entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    SunsaSensorEntityDescription(
+        key="defaultSmartHomeDirection",
+        name="Default smart home direction",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        state_fn=lambda data: data.get(TEXT)
+    ),
+    SunsaSensorEntityDescription(
+        key="blindType",
+        name="Blind type",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        state_fn=lambda data: data.get(TEXT)
     ),
 )
 
@@ -102,8 +113,3 @@ class SunsaSensor(SunsaEntity, SensorEntity):
         self._attr_native_value = value
 
         self.async_write_ha_state()
-
-    @property
-    def device(self) -> dict[str, Any] | None:
-        """Get the device data from the coordinator."""
-        return self.coordinator.data.get(self._sunsa_device_id)

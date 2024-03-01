@@ -5,7 +5,7 @@
 
 from __future__ import annotations
 
-
+from typing import Any
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -15,7 +15,7 @@ from .coordinator import SunsaDataUpdateCoordinator
 
 
 class SunsaEntity(CoordinatorEntity[SunsaDataUpdateCoordinator], Entity):
-    """Defines a Sunsa entity."""
+    """Defines a basic Sunsa entity."""
 
     _attr_has_entity_name = True
 
@@ -38,3 +38,13 @@ class SunsaEntity(CoordinatorEntity[SunsaDataUpdateCoordinator], Entity):
         self._sunsa_device_id = sunsa_device_id
         self.entity_description = entity_description
         self._attr_unique_id = f"{device_name}-{entity_description.key}"
+
+    @property
+    def available(self) -> bool:
+        """Return the availability of the device that provides this sensor data."""
+        return super().available and self.device.get("isConnected") is True
+
+    @property
+    def device(self) -> dict[str, Any] | None:
+        """Get the device data from the coordinator."""
+        return self.coordinator.data.get(self._sunsa_device_id)
