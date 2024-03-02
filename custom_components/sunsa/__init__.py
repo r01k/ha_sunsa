@@ -3,9 +3,12 @@
 """The Sunsa integration."""
 
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.helpers.typing import ConfigType
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import config_validation as cv
 
+from .services import async_setup_services
 from .const import DOMAIN
 from .coordinator import SunsaDataUpdateCoordinator
 
@@ -14,6 +17,17 @@ PLATFORMS = [
     Platform.COVER,
     Platform.SENSOR,
 ]
+
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
+
+
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
+    """Set up Sunsa component."""
+
+    await async_setup_services(hass)
+
+    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

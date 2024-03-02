@@ -16,5 +16,27 @@
     "abort": {
       "already_configured": "[%key:common::config_flow::abort::already_configured_account%]"
     }
+  },
+  "entity": {
+    "sensor": {
+      "default_smart_home_direction": {
+        "name": "Default smart home direction"
+      },
+      "blind_type": {
+        "name": "Blind type"
+      }
+    }
+  },
+  "services": {
+    "set_position": {
+      "name": "Set position",
+      "description": "Moves a Sunsa blind to a specific position in any direction.",
+      "fields": {
+        "position": {
+          "name": "Position",
+          "description": "Target position."
+        }
+      }
+    }
   }
 }

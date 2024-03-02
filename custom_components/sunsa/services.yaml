@@ -1,0 +1,19 @@
+set_position:
+  name: Set position
+  description: Moves a Sunsa blind to a specific position in any direction.
+  target:
+    entity:
+      integration: sunsa
+      device_class: blind
+  fields:
+    position:
+      name: Position
+      description: Target position.
+      required: true
+      default: 0
+      selector:
+        number:
+          min: -100
+          max: 100
+          step: 10
+          unit_of_measurement: "%"

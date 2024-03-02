@@ -13,6 +13,8 @@ UNIT: Final = "unit"
 TEXT: Final = "text"
 DEFAULT_SMART_HOME_POISTION: Final = "defaultSmartHomeDirection"
 USER_ID: Final = "user_id"
+SERVICE_SET_POSITION: Final = "set_position"
+ATTR_POSITION: Final = "position"
 
 LOGGER = logging.getLogger(__package__)
-UPDATE_INTERVAL = timedelta(seconds=10)
+UPDATE_INTERVAL = timedelta(seconds=15)
