@@ -11,8 +11,7 @@ from .coordinator import SunsaDataUpdateCoordinator
 
 
 PLATFORMS = [
-    # Platform.BINARY_SENSOR,
-    # Platform.COVER,
+    Platform.COVER,
     Platform.SENSOR,
 ]
 

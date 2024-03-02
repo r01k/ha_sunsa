@@ -23,8 +23,8 @@ class SunsaEntity(CoordinatorEntity[SunsaDataUpdateCoordinator], Entity):
         self,
         coordinator: SunsaDataUpdateCoordinator,
         device_name: str,
-        entity_description: EntityDescription,
         sunsa_device_id: int,
+        entity_description: str | None = None
 
         ) -> None:
         """Initialize the Sunsa entity."""
@@ -36,8 +36,10 @@ class SunsaEntity(CoordinatorEntity[SunsaDataUpdateCoordinator], Entity):
             manufacturer=DOMAIN,
         )
         self._sunsa_device_id = sunsa_device_id
-        self.entity_description = entity_description
-        self._attr_unique_id = f"{device_name}-{entity_description.key}"
+        self._attr_unique_id = str(sunsa_device_id)
+        if entity_description:
+            self._attr_unique_id += f"-{entity_description}"
+
 
     @property
     def available(self) -> bool:

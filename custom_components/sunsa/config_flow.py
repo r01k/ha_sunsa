@@ -16,13 +16,13 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import (
     CONF_EMAIL,
-    CONF_USERNAME,
     CONF_API_KEY,
+    CONF_USERNAME
 )
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import DOMAIN, LOGGER
+from .const import DOMAIN, LOGGER, USER_ID
 
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):

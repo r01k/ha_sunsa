@@ -15,12 +15,14 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import UnitOfTemperature, EntityCategory, CONF_NAME, PERCENTAGE
+from homeassistant.const import (
+    UnitOfTemperature, EntityCategory, CONF_NAME, PERCENTAGE
+)
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .const import DOMAIN, VALUE, TEXT
+from .const import DOMAIN, VALUE, TEXT, DEFAULT_SMART_HOME_POISTION
 from .coordinator import SunsaDataUpdateCoordinator
 from .entity import SunsaEntity
 
@@ -41,7 +43,7 @@ SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.TEMPERATURE,
         native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
         state_class=SensorStateClass.MEASUREMENT,
-        entity_category=EntityCategory.DIAGNOSTIC,
+        #entity_category=EntityCategory.DIAGNOSTIC,
         suggested_display_precision=0,
         state_fn=lambda data: data.get(VALUE)
     ),
@@ -50,10 +52,10 @@ SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.BATTERY,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
-        entity_category=EntityCategory.DIAGNOSTIC,
+        #entity_category=EntityCategory.DIAGNOSTIC,
     ),
     SunsaSensorEntityDescription(
-        key="defaultSmartHomeDirection",
+        key=DEFAULT_SMART_HOME_POISTION,
         name="Default smart home direction",
         entity_category=EntityCategory.DIAGNOSTIC,
         state_fn=lambda data: data.get(TEXT)
@@ -93,12 +95,14 @@ class SunsaSensor(SunsaEntity, SensorEntity):
         sensor_description: SunsaSensorEntityDescription,
     ) -> None:
         """Initialize the sensor entity."""
+        device_name = coordinator.data[sunsa_device_id][CONF_NAME]
         super().__init__(
             coordinator,
-            coordinator.data[sunsa_device_id][CONF_NAME],
-            sensor_description,
-            sunsa_device_id
+            device_name,
+            sunsa_device_id,
+            sensor_description.key
         )
+        self.entity_description = sensor_description
 
     @callback
     def _handle_coordinator_update(self) -> None:
