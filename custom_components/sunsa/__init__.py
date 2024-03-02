@@ -3,12 +3,10 @@
 """The Sunsa integration."""
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.helpers.typing import ConfigType
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import config_validation as cv
 
-from .services import async_setup_services
 from .const import DOMAIN
 from .coordinator import SunsaDataUpdateCoordinator
 
