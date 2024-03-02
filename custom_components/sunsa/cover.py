@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import voluptuous as vol
 from typing import Any
 from homeassistant.components.cover import (
     ATTR_POSITION,
@@ -17,11 +18,13 @@ from homeassistant.const import CONF_NAME
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
+from homeassistant.helpers import entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
     DOMAIN,
     DEFAULT_SMART_HOME_POISTION,
+    SERVICE_SET_POSITION,
     LOGGER
 )
 from .coordinator import SunsaDataUpdateCoordinator
@@ -29,6 +32,12 @@ from .entity import SunsaEntity
 
 from pysunsa import CLOSED_POSITION, OPEN_POSITION, RIGHT, DOWN
 from pysunsa.exceptions import PysunsaError
+
+SERVICE_SET_POSITION_SCHEMA = {
+    vol.Required(ATTR_POSITION): vol.All(
+        vol.Range(min=-100, max=100)
+    )
+}
 
 
 async def async_setup_entry(
@@ -43,6 +52,13 @@ async def async_setup_entry(
     async_add_entities(
         SunsaCover(coordinator, sunsa_device_id)
         for sunsa_device_id in coordinator.data
+    )
+
+    platform = entity_platform.async_get_current_platform()
+    platform.async_register_entity_service(
+        SERVICE_SET_POSITION,
+        SERVICE_SET_POSITION_SCHEMA,
+        "_async_update_cover",
     )
 
 
@@ -106,7 +122,7 @@ class SunsaCover(SunsaEntity, CoverEntity):
         await self._async_update_cover(CLOSED_POSITION * self.default_closing_direction)
 
     async def async_set_cover_position(self, **kwargs: Any) -> None:
-        """Set the cover to a specific position."""
+        """Set the cover to a specific position between 0 and 100."""
         await self._async_update_cover(
             (CLOSED_POSITION - int(kwargs[ATTR_POSITION])) *
             self.default_closing_direction

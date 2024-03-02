@@ -13,7 +13,6 @@ from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.exceptions import HomeAssistantError
 import homeassistant.helpers.config_validation as cv
 import homeassistant.helpers.device_registry as dr
-import homeassistant.helpers.entity_registry as er
 
 from .const import (
     ATTR_POSITION,
