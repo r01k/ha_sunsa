@@ -20,16 +20,14 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
-    CLOSED_POSITION,
-    OPEN_POSITION,
     DOMAIN,
     DEFAULT_SMART_HOME_POISTION,
-    RIGHT,
     LOGGER
 )
 from .coordinator import SunsaDataUpdateCoordinator
 from .entity import SunsaEntity
 
+from pysunsa import CLOSED_POSITION, OPEN_POSITION, RIGHT, DOWN
 from pysunsa.exceptions import PysunsaError
 
 
@@ -55,9 +53,9 @@ class SunsaCover(SunsaEntity, CoverEntity):
     _attr_name = None
     _attr_device_class = CoverDeviceClass.BLIND
     _attr_supported_features = (
-            CoverEntityFeature.OPEN
-            | CoverEntityFeature.CLOSE
-            | CoverEntityFeature.SET_POSITION
+        CoverEntityFeature.OPEN
+        | CoverEntityFeature.CLOSE
+        | CoverEntityFeature.SET_POSITION
     )
 
     def __init__(
@@ -72,26 +70,32 @@ class SunsaCover(SunsaEntity, CoverEntity):
             device_name,
             sunsa_device_id
         )
+        self.sunsa = self.coordinator.sunsa
 
     @property
     def current_cover_position(self) -> int:
         """Return current position of cover."""
-        # Blind position is [-100 - 100] where -100 is closed in one direction,
-        # 100 is closed in the other and 0 is completely open.
+        # Blind position range is [-100, 100] where -100 is closed right or down,
+        # 100 is closed left or up and 0 is fully open.
         return CLOSED_POSITION - abs(self.device.get(ATTR_POSITION))
 
     @property
     def is_closed(self) -> bool:
         """Return true if cover is closed, else False."""
-        return abs(self.current_cover_position) == CLOSED_POSITION
+        # Position 0 in Sunsa with means fully open
+        return abs(self.current_cover_position) == OPEN_POSITION
 
     @property
-    def default_closed_position(self) -> int:
-        """Return the default closed position of the cover depending on the default \
-        smart home position."""
-        return CLOSED_POSITION \
-            if self.device.get(DEFAULT_SMART_HOME_POISTION) == RIGHT else \
-            -CLOSED_POSITION
+    def default_closing_direction(self) -> int:
+        """
+        Return the default closing direction of the blind.
+        1 for right or down if a vertical or horizontal blind, respectively.
+        -1 for left or up if a vertical or horizontal blind, respectively.
+        """
+        if self.device[DEFAULT_SMART_HOME_POISTION]["text"] in (RIGHT, DOWN):
+            return 1
+        else:
+            return -1
 
     async def async_open_cover(self, **kwargs: Any) -> None:
         """Set the cover to the open position."""
@@ -99,13 +103,13 @@ class SunsaCover(SunsaEntity, CoverEntity):
 
     async def async_close_cover(self, **kwargs: Any) -> None:
         """Set the cover to the open position."""
-        await self._async_update_cover(self.default_closed_position)
+        await self._async_update_cover(CLOSED_POSITION * self.default_closing_direction)
 
     async def async_set_cover_position(self, **kwargs: Any) -> None:
         """Set the cover to a specific position."""
         await self._async_update_cover(
-            # Sunsa API accepts positions in multiple of 10
-            round(int(kwargs[ATTR_POSITION]), -1)
+            (CLOSED_POSITION - int(kwargs[ATTR_POSITION])) *
+            self.default_closing_direction
         )
 
     async def _async_update_cover(self, position: int) -> None:
