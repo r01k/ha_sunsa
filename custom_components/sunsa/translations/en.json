@@ -10,10 +10,16 @@
         },
         "step": {
             "user": {
+                "title": "Add devices from Sunsa account",
                 "data": {
                     "email": "Email",
-                    "username": "Username",
+                    "user_id": "User Id",
                     "api_key": "API key"
+                },
+                "data_description": {
+                    "email": "Sunsa account email",
+                    "user_id": "The numeric Sunsa API User Id",
+                    "api_key": "Sunsa API key"
                 }
             }
         }

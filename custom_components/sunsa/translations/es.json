@@ -10,10 +10,16 @@
         },
         "step": {
             "user": {
+                "title": "A\u00f1adir dispositivos de una cuenta de Sunsa",
                 "data": {
                     "email": "Email",
-                    "username": "Nombre de usuario",
+                    "user_id": "Identidad de usuario",
                     "api_key": "Clave de la API"
+                },
+                "data_description": {
+                    "email": "Email de la cuenta de Sunsa",
+                    "user_id": "El nombre de usuario num\u00e9rico de la API de Sunsa",
+                    "api_key": "Clave de la API de Sunsa"
                 }
             }
         }

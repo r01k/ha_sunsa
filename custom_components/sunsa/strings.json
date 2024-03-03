@@ -2,9 +2,10 @@
   "config": {
     "step": {
       "user": {
+        "title": "Add devices for Sunsa account",
         "data": {
           "email": "[%key:common::config_flow::data::email%]",
-          "username": "[%key:common::config_flow::data::username%]",
+          "user_id": "User ID",
           "api_key": "[%key:common::config_flow::data::api_key%]"
         }
       }

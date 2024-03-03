@@ -22,7 +22,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .const import DOMAIN, VALUE, TEXT, DEFAULT_SMART_HOME_POISTION
+from .const import DOMAIN, VALUE, TEXT, DEFAULT_SMART_HOME_POISTION, LOGGER
 from .coordinator import SunsaDataUpdateCoordinator
 from .entity import SunsaEntity
 
@@ -76,11 +76,13 @@ async def async_setup_entry(
 ) -> None:
     """Set up the Sunsa sensors."""
     coordinator: SunsaDataUpdateCoordinator = hass.data[DOMAIN][config_entry.entry_id]
-    async_add_entities(
+    sensors = [
         SunsaSensor(coordinator, sunsa_device_id, description)
         for sunsa_device_id in coordinator.data
         for description in SENSORS
-    )
+    ]
+    async_add_entities(sensors)
+    LOGGER.debug("Registered %s sensors", len(sensors))
 
 
 class SunsaSensor(SunsaEntity, SensorEntity):

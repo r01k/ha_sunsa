@@ -16,8 +16,7 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import (
     CONF_EMAIL,
-    CONF_API_KEY,
-    CONF_USERNAME
+    CONF_API_KEY
 )
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
@@ -38,7 +37,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     ):
         sunsa = Pysunsa(
             async_get_clientsession(self.hass),
-            userid=user_input[CONF_USERNAME],
+            userid=user_input[USER_ID],
             apikey=user_input[CONF_API_KEY]
         )
 
@@ -91,7 +90,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 {
                     # FIXME What to use for userid?
                     vol.Required(CONF_EMAIL): str,
-                    vol.Required(CONF_USERNAME): str,
+                    vol.Required(USER_ID): str,
                     vol.Required(CONF_API_KEY): str,
                 }
             ),

@@ -60,6 +60,7 @@ async def async_setup_entry(
         SERVICE_SET_POSITION_SCHEMA,
         "_async_update_cover",
     )
+    LOGGER.debug("Registered cover services")
 
 
 class SunsaCover(SunsaEntity, CoverEntity):
@@ -87,6 +88,7 @@ class SunsaCover(SunsaEntity, CoverEntity):
             sunsa_device_id
         )
         self.sunsa = self.coordinator.sunsa
+        LOGGER.debug("Instantiated cover: %s", device_name)
 
     @property
     def current_cover_position(self) -> int:
@@ -130,6 +132,11 @@ class SunsaCover(SunsaEntity, CoverEntity):
 
     async def _async_update_cover(self, position: int) -> None:
         """Set the cover to the new position."""
+        LOGGER.debug(
+            "Moving cover %s to position %s",
+            self.device_info[CONF_NAME],
+            position
+        )
         try:
             await self.coordinator.sunsa.update_device(self._sunsa_device_id, position)
         except PysunsaError:
