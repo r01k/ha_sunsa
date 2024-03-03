@@ -30,10 +30,10 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
     async def validate_user_input(
-            self,
-            user_input: dict[str, Any],
-            errors: dict[str, str],
-            description_placeholders: dict[str, str] | Any = None,
+        self,
+        user_input: dict[str, Any],
+        errors: dict[str, str],
+        description_placeholders: dict[str, str] | Any = None,
     ):
         sunsa = Pysunsa(
             async_get_clientsession(self.hass),
@@ -45,12 +45,15 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             async with asyncio.timeout(15):
                 devices = await sunsa.get_devices()
         except (
-                ClientConnectorError,
-                PysunsaError,
-                TimeoutError,
+            ClientConnectorError,
+            PysunsaError,
+            TimeoutError,
         ) as error:
             LOGGER.debug(error.args, exc_info=True)
-            errors["base"] = "cannot_connect"
+            if isinstance(error, PysunsaError) and error.args[0] == 401:
+                errors["base"] = "invalid_auth"
+            else:
+                errors["base"] = "cannot_connect"
             description_placeholders["error_detail"] = str(error.args)
         except Exception as error:  # pylint: disable=broad-except
             LOGGER.exception("Unexpected exception: %s", error)
@@ -88,9 +91,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=vol.Schema(
                 {
-                    # FIXME What to use for userid?
                     vol.Required(CONF_EMAIL): str,
-                    vol.Required(USER_ID): str,
+                    vol.Required(USER_ID): int,
                     vol.Required(CONF_API_KEY): str,
                 }
             ),

@@ -35,7 +35,8 @@ from pysunsa.exceptions import PysunsaError
 
 SERVICE_SET_POSITION_SCHEMA = {
     vol.Required(ATTR_POSITION): vol.All(
-        vol.Range(min=-100, max=100)
+        vol.Range(min=-100, max=100),
+        vol.All(int)
     )
 }
 

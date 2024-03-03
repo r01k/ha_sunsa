@@ -11,12 +11,12 @@ from pysunsa import Pysunsa
 from pysunsa.exceptions import PysunsaError
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_USERNAME, CONF_API_KEY
+from homeassistant.const import CONF_API_KEY
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .const import LOGGER, UPDATE_INTERVAL, DOMAIN, IDDEVICE
+from .const import LOGGER, UPDATE_INTERVAL, DOMAIN, IDDEVICE, USER_ID
 
 
 class SunsaDataUpdateCoordinator(DataUpdateCoordinator):
@@ -32,7 +32,7 @@ class SunsaDataUpdateCoordinator(DataUpdateCoordinator):
         )
         self.sunsa = Pysunsa(
             async_get_clientsession(hass),
-            entry.data[CONF_USERNAME],
+            entry.data[USER_ID],
             entry.data[CONF_API_KEY]
         )
 

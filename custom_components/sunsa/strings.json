@@ -2,17 +2,23 @@
   "config": {
     "step": {
       "user": {
-        "title": "Add devices for Sunsa account",
-        "data": {
-          "email": "[%key:common::config_flow::data::email%]",
-          "user_id": "User ID",
-          "api_key": "[%key:common::config_flow::data::api_key%]"
+      "title": "Add devices from Sunsa account",
+      "data": {
+        "email": "Email",
+        "user_id": "User Id",
+        "api_key": "API key"
+        },
+      "data_description": {
+        "email": "Sunsa account email",
+        "user_id": "The numeric Sunsa API User Id",
+        "api_key": "Sunsa API key"
         }
       }
     },
     "error": {
       "cannot_connect": "Cannot connect. Details: {error_detail}",
-      "unknown": "Unknown. Details: {error_detail}"
+      "invalid_auth": "Invalid authentication.",
+      "unknown": "Unknown error. Details: {error_detail}"
     },
     "abort": {
       "already_configured": "[%key:common::config_flow::abort::already_configured_account%]"

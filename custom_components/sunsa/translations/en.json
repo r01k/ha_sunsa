@@ -4,9 +4,9 @@
             "already_configured": "Account is already configured"
         },
         "error": {
-            "cannot_connect": "Failed to connect",
-            "invalid_auth": "Invalid authentication",
-            "unknown": "Unexpected error"
+            "cannot_connect": "Failed to connect. Details: {error_detail}",
+            "invalid_auth": "Invalid authentication.",
+            "unknown": "Unexpected error. Details: {error_detail}"
         },
         "step": {
             "user": {
