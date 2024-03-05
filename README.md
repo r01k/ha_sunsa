@@ -1,4 +1,5 @@
-# Sunsa Blinds Wand Integration
+# Sunsa Smart Blinds Wand Integration
+![](https://github.com/r01k/ha_sunsa/blob/master/assets/branding/logo%402x.png)
 
 Monitor and control your Sunsa blind wands from Home Assistant.
 
