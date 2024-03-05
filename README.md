@@ -55,20 +55,24 @@ system.
 ## FAQ
 ---
 - *I added/deleted new wands. How do I update Home Assistant?*
-   If you added new wands, reload the integration for them to be added automatically. 
-   If wands were removed from your Sunsa account, they'll be marked unavailable in Home 
-   Assistant and you can remove them manually.
+
+  If you added new wands, reload the integration for them to be added automatically. 
+  If wands were removed from your Sunsa account, they'll be marked unavailable in Home 
+  Assistant and you can remove them manually.
 - *There is a delay for the wands to move and for Home Assistant to update the status.*
-   This is expected as per the polling interval of 20 seconds recommended by Sunsa. The 
-   delay should be at most 20 seconds. Note that all cloud-polling integrations present 
-   some delay.
+
+  This is expected as per the polling interval of 20 seconds recommended by Sunsa. The 
+  delay should be at most 20 seconds. Note that all cloud-polling integrations present 
+  some delay.
 - *The temperature reported by the wand is wrong.*
-   This is an issue being investigated by Sunsa. They plan on rolling out a firmware 
-   update that will add a configurable temperature sensor offset to permit manual 
-   adjustments.
+
+  This is an issue being investigated by Sunsa. They plan on rolling out a firmware 
+  update that will add a configurable temperature sensor offset to permit manual 
+  adjustments.
 - *The light sensor of the wands is not added to Home Assistant.*
-   For now the light sensor has not been activated by Sunsa in the wands equipped with it.
-   The sensor will be turned on with upcoming firmware.
+
+  For now the light sensor has not been activated by Sunsa in the wands equipped with it.
+  The sensor will be turned on with upcoming firmware.
 
 ## Troubleshooting
 ---
