@@ -22,7 +22,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .const import DOMAIN, VALUE, TEXT, DEFAULT_SMART_HOME_POISTION, LOGGER
+from .const import DOMAIN, VALUE, TEXT, DEFAULT_SMART_HOME_POISTION, LOGGER, BLIND_TYPE
 from .coordinator import SunsaDataUpdateCoordinator
 from .entity import SunsaEntity
 
@@ -61,7 +61,7 @@ SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
         state_fn=lambda data: data.get(TEXT)
     ),
     SunsaSensorEntityDescription(
-        key="blindType",
+        key=BLIND_TYPE,
         name="Blind type",
         entity_category=EntityCategory.DIAGNOSTIC,
         state_fn=lambda data: data.get(TEXT)

@@ -20,5 +20,7 @@ DEFAULT_SMART_HOME_POISTION: Final = "defaultSmartHomeDirection"
 USER_ID: Final = "user_id"
 SERVICE_SET_POSITION: Final = "set_position"
 ATTR_POSITION: Final = "position"
+BLIND_TYPE: Final = "blindType"
+IS_CONNECTED: Final = "isConnected"
 
 UPDATE_INTERVAL = timedelta(seconds=15)
