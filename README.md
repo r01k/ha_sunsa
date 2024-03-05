@@ -1,4 +1,4 @@
-# Sunsa Smart Wand Integration
+# Sunsa Blinds Wand Integration
 
 Monitor and control your Sunsa blind wands from Home Assistant.
 
@@ -65,7 +65,7 @@ system.
    This is an issue being investigated by Sunsa. They plan on rolling out a firmware 
    update that will add a configurable temperature sensor offset to permit manual 
    adjustments.
-- *The light sensor of wand is not added to Home Assistant.*
+- *The light sensor of the wands is not added to Home Assistant.*
    For now the light sensor has not been activated by Sunsa in the wands equipped with it.
    The sensor will be turned on with upcoming firmware.
 
