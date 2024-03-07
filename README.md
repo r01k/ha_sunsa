@@ -1,17 +1,17 @@
 # Sunsa Smart Blinds Wand Integration
 ![](https://github.com/r01k/ha_sunsa/blob/master/assets/branding/logo%402x.png)
 
-Monitor and control your Sunsa blind wands from Home Assistant.
+Monitor and control your Sunsa blinds wands from Home Assistant.
 
-- Control and monitor the position of the blinds.
+- Control the position of the blinds.
 - Monitor the wands battery level.
-- Monitor other wands sensors.
+- Monitor other wand sensors.
 - See wands diagnostic info.
 
 This custom Home Assistant component integrates the 
-[Sunsa Smart Blind Wands](https://sunsawands.com/) by leveraging the public Sunsa REST 
+[Sunsa Smart Blinds Wands](https://sunsawands.com/) by leveraging the public Sunsa REST 
 cloud API. All the wands in your Sunsa account will be added to Home Assistant as cover 
-entities of blind type.
+entities of type blind.
 
 
 ## Prerequisites
@@ -64,15 +64,6 @@ system.
   This is expected as per the polling interval of 20 seconds recommended by Sunsa. The 
   delay should be at most 20 seconds. Note that all cloud-polling integrations present 
   some delay.
-- *The temperature reported by the wand is wrong.*
-
-  This is an issue being investigated by Sunsa. They plan on rolling out a firmware 
-  update that will add a configurable temperature sensor offset to permit manual 
-  adjustments.
-- *The light sensor of the wands is not added to Home Assistant.*
-
-  For now the light sensor has not been activated by Sunsa in the wands equipped with it.
-  The sensor will be turned on with upcoming firmware.
 
 ## Troubleshooting
 ---

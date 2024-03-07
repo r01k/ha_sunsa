@@ -25,6 +25,7 @@ from .const import (
     DOMAIN,
     DEFAULT_SMART_HOME_POISTION,
     SERVICE_SET_POSITION,
+    BLIND_TYPE,
     LOGGER
 )
 from .coordinator import SunsaDataUpdateCoordinator
@@ -115,6 +116,14 @@ class SunsaCover(SunsaEntity, CoverEntity):
             return 1
         else:
             return -1
+
+    @property
+    def icon(self) -> str | None:
+        """Icon of the entity, based on blind type."""
+        icon_name = f"mdi:blinds-{self.device[BLIND_TYPE]["text"].lower()}"
+        if self.is_closed:
+            icon_name += "-closed"
+        return icon_name
 
     async def async_open_cover(self, **kwargs: Any) -> None:
         """Set the cover to the open position."""
