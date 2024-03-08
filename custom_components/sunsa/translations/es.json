@@ -1,7 +1,8 @@
 {
     "config": {
         "abort": {
-            "already_configured": "La cuenta ya est\u00e1 configurada"
+            "already_configured": "La cuenta ya est\u00e1 configurada",
+            "reauth_successful": "Reautenticaci\u00f3n exitosa"
         },
         "error": {
             "cannot_connect": "La conexi\u00f3n fall\u00f3. Detalles: {error_detail}",
@@ -18,7 +19,18 @@
                 },
                 "data_description": {
                     "email": "Email de la cuenta de Sunsa",
-                    "user_id": "El nombre de usuario num\u00e9rico de la API de Sunsa",
+                    "user_id": "Nombre de usuario num\u00e9rico de la API de Sunsa",
+                    "api_key": "Clave de la API de Sunsa"
+                }
+            },
+            "reauth_confirm": {
+                "title": "Reautent\u00edquese con la cuenta de Sunsa",
+                "data": {
+                    "user_id": "Identidad de usuario",
+                    "api_key": "Clave de la API"
+                },
+                "data_description": {
+                    "user_id": "Nombre de usuario num\u00e9rico de la API de Sunsa",
                     "api_key": "Clave de la API de Sunsa"
                 }
             }

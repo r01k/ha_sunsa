@@ -63,7 +63,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             return devices
 
     async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
+        self,
+        user_input: dict[str, Any] | None = None
     ) -> FlowResult:
         """Handle the initial step."""
         errors: dict[str, str] = {}
@@ -99,3 +100,44 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             description_placeholders=placeholders,
             errors=errors,
         )
+
+    async def async_step_reauth(
+            self,
+            user_input: dict[str, Any] | None = None,
+    ) -> FlowResult:
+        """Perform reauth upon an API authentication error."""
+        self._reauth_entry = self.hass.config_entries.async_get_entry(
+            self.context["entry_id"]
+        )
+        return await self.async_step_reauth_confirm(
+            user_input=user_input,
+        )
+
+    async def async_step_reauth_confirm(
+        self,
+        user_input: dict[str, Any] | None,
+    ) -> FlowResult:
+        """Dialog that informs the user that reauth is required."""
+        assert self._reauth_entry
+
+        errors: dict[str, str] = {}
+        placeholders: dict[str, str] = {}
+
+        if user_input is None or not await self.validate_user_input(
+            user_input,
+            errors,
+            description_placeholders=placeholders
+        ):
+            return self.async_show_form(
+                step_id="reauth_confirm",
+                data_schema=vol.Schema(
+                    {vol.Required(USER_ID): int,
+                     vol.Required(CONF_API_KEY): str}
+                ),
+                description_placeholders=placeholders,
+                errors=errors,
+            )
+
+        self.hass.config_entries.async_update_entry(self._reauth_entry, data=user_input)
+        await self.hass.config_entries.async_reload(self._reauth_entry.entry_id)
+        return self.async_abort(reason="reauth_successful")

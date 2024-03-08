@@ -1,7 +1,8 @@
 {
     "config": {
         "abort": {
-            "already_configured": "Account is already configured"
+            "already_configured": "Account is already configured",
+            "reauth_successful": "Re-authentication was successful"
         },
         "error": {
             "cannot_connect": "Failed to connect. Details: {error_detail}",
@@ -18,7 +19,18 @@
                 },
                 "data_description": {
                     "email": "Sunsa account email",
-                    "user_id": "The numeric Sunsa API User Id",
+                    "user_id": "Numeric Sunsa API User Id",
+                    "api_key": "Sunsa API key"
+                }
+            },
+            "reauth_confirm": {
+                "title": "Reauthenticate to Sunsa account",
+                "data": {
+                    "user_id": "User Id",
+                    "api_key": "API key"
+                },
+                "data_description": {
+                    "user_id": "Numeric Sunsa API User Id",
                     "api_key": "Sunsa API key"
                 }
             }

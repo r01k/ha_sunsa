@@ -11,6 +11,7 @@ from pysunsa import Pysunsa
 from pysunsa.exceptions import PysunsaError
 
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.const import CONF_API_KEY
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
@@ -42,6 +43,8 @@ class SunsaDataUpdateCoordinator(DataUpdateCoordinator):
             async with asyncio.timeout(15):
                 devices = await self.sunsa.get_devices()
         except PysunsaError as error:
+            if error.status_code == 401:
+                raise ConfigEntryAuthFailed() from error
             raise UpdateFailed(error) from error
 
         # Updated info for all devices

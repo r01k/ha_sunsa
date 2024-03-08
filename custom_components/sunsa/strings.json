@@ -13,6 +13,17 @@
         "user_id": "The numeric Sunsa API User Id",
         "api_key": "Sunsa API key"
         }
+      },
+      "reauth_confirm": {
+      "title": "Reauthenticate to Sunsa account",
+      "data": {
+        "user_id": "User Id",
+        "api_key": "API key"
+        },
+      "data_description": {
+        "user_id": "The numeric Sunsa API User Id",
+        "api_key": "Sunsa API key"
+        }
       }
     },
     "error": {
@@ -21,7 +32,8 @@
       "unknown": "Unknown error. Details: {error_detail}"
     },
     "abort": {
-      "already_configured": "[%key:common::config_flow::abort::already_configured_account%]"
+      "already_configured": "[%key:common::config_flow::abort::already_configured_account%]",
+      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]"
     }
   },
   "entity": {
