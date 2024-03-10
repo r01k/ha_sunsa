@@ -1,6 +1,6 @@
 # Sunsa Smart Blinds Wand Integration
 ![](https://github.com/r01k/ha_sunsa/blob/master/assets/branding/logo%402x.png)
-
+---
 Monitor and control your Sunsa blinds wands from Home Assistant.
 
 - Control the position of the blinds.
@@ -15,14 +15,12 @@ entities of type blind.
 
 
 ## Prerequisites
----
 In order to use the Sunsa cloud API you need to activate it for your account:
 1. Inside the Sunsa app, go to `Setttings` > `API Settings`  and turn on the toggle.
 2. Take note of your  `API Key` and `User ID`.
 
 
 ## Installation
----
 ### HACS
 The recommended method to install this integration is through the
 [Home Assistant Community Store (HACS)](https://hacs.xyz/):
@@ -41,7 +39,6 @@ configuration wizard. You'll need three pieces of information:
 	- Your Sunsa API Key. See [Prerequisites](#prerequisites).
 
 ### Manual Installation
----
 Alternatively, you can install the integration manually (advanced). You don't need HACS to
 do this but then managing 
 integration updates must be done manually too.
@@ -53,7 +50,6 @@ system.
 4. Continue on step 5 under [HACS](#hacs).
 
 ## FAQ
----
 - *I added/deleted new wands. How do I update Home Assistant?*
 
   If you added new wands, reload the integration for them to be added automatically. 
@@ -66,7 +62,6 @@ system.
   some delay.
 
 ## Troubleshooting
----
 I developed and tested the integration with several wands of model SUNSA SW1. Correct 
 functionality is not guaranteed with different (potentially older) models. In any case, 
 open an issue here if you see any problem. Remember to always enable debug logging for the

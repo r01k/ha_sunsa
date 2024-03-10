@@ -22,7 +22,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .const import DOMAIN, VALUE, TEXT, DEFAULT_SMART_HOME_POISTION, LOGGER, BLIND_TYPE
+from .const import DOMAIN, VALUE, TEXT, DEFAULT_SMART_HOME_DIRECTION, LOGGER, BLIND_TYPE
 from .coordinator import SunsaDataUpdateCoordinator
 from .entity import SunsaEntity
 
@@ -43,7 +43,6 @@ SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.TEMPERATURE,
         native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
         state_class=SensorStateClass.MEASUREMENT,
-        #entity_category=EntityCategory.DIAGNOSTIC,
         suggested_display_precision=0,
         state_fn=lambda data: data.get(VALUE)
     ),
@@ -52,16 +51,17 @@ SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.BATTERY,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
-        #entity_category=EntityCategory.DIAGNOSTIC,
     ),
     SunsaSensorEntityDescription(
-        key=DEFAULT_SMART_HOME_POISTION,
+        key=DEFAULT_SMART_HOME_DIRECTION,
+        translation_key="default_smart_home_direction",
         name="Default smart home direction",
         entity_category=EntityCategory.DIAGNOSTIC,
         state_fn=lambda data: data.get(TEXT)
     ),
     SunsaSensorEntityDescription(
         key=BLIND_TYPE,
+        translation_key="blind_type",
         name="Blind type",
         entity_category=EntityCategory.DIAGNOSTIC,
         state_fn=lambda data: data.get(TEXT)

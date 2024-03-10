@@ -23,8 +23,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
     DOMAIN,
-    DEFAULT_SMART_HOME_POISTION,
-    SERVICE_SET_POSITION,
+    DEFAULT_SMART_HOME_DIRECTION,
+    SERVICE_SET_ABSOLUTE_POSITION,
     BLIND_TYPE,
     LOGGER
 )
@@ -58,7 +58,7 @@ async def async_setup_entry(
 
     platform = entity_platform.async_get_current_platform()
     platform.async_register_entity_service(
-        SERVICE_SET_POSITION,
+        SERVICE_SET_ABSOLUTE_POSITION,
         SERVICE_SET_POSITION_SCHEMA,
         "_async_update_cover",
     )
@@ -112,7 +112,7 @@ class SunsaCover(SunsaEntity, CoverEntity):
         1 for right or down if a vertical or horizontal blind, respectively.
         -1 for left or up if a vertical or horizontal blind, respectively.
         """
-        if self.device[DEFAULT_SMART_HOME_POISTION]["text"] in (RIGHT, DOWN):
+        if self.device[DEFAULT_SMART_HOME_DIRECTION]["text"] in (RIGHT, DOWN):
             return 1
         else:
             return -1

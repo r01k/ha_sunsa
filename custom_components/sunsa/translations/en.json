@@ -35,5 +35,31 @@
                 }
             }
         }
-    }
+    },
+    "entity": {
+        "sensor": {
+          "default_smart_home_direction": {
+            "name": "Default smart home direction",
+            "state": {
+              "right": "Right",
+              "left": "Left"
+            }
+          },
+          "blind_type": {
+            "name": "Blind type"
+          }
+        }
+    },
+    "services": {
+        "set_absolute_position": {
+          "name": "Set absolute position",
+          "description": "Moves a Sunsa blind to any position from closed backwards to closed forwards.",
+          "fields": {
+            "position": {
+              "name": "Position",
+              "description": "New position (0: open, -100: closed backwards, 100: closed forwards)."
+            }
+          }
+        }
+  }
 }

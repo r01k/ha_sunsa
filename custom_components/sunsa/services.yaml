@@ -1,6 +1,6 @@
-set_position:
-  name: Set position
-  description: Moves a Sunsa blind to a specific position in any direction.
+set_absolute_position:
+  name: Set absolute position
+  description: Moves a Sunsa blind to any position from closed backwards to closed forwards.
   target:
     entity:
       integration: sunsa
@@ -8,12 +8,10 @@ set_position:
   fields:
     position:
       name: Position
-      description: Target position.
+      description: "New position (0: open, -100: closed backwards, 100: closed forwards)."
       required: true
       default: 0
       selector:
         number:
           min: -100
           max: 100
-          step: 10
-          unit_of_measurement: "%"
