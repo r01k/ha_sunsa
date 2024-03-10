@@ -20,6 +20,7 @@ DEFAULT_SMART_HOME_DIRECTION: Final = "defaultSmartHomeDirection"
 USER_ID: Final = "user_id"
 SERVICE_SET_ABSOLUTE_POSITION: Final = "set_absolute_position"
 ATTR_POSITION: Final = "position"
+ATTR_CURRENT_ABSOLUTE_POSITION: Final = "current_absolute_position"
 BLIND_TYPE: Final = "blindType"
 IS_CONNECTED: Final = "isConnected"
 

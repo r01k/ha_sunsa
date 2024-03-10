@@ -25,6 +25,7 @@ from .const import (
     DOMAIN,
     DEFAULT_SMART_HOME_DIRECTION,
     SERVICE_SET_ABSOLUTE_POSITION,
+    ATTR_CURRENT_ABSOLUTE_POSITION,
     BLIND_TYPE,
     LOGGER
 )
@@ -95,15 +96,29 @@ class SunsaCover(SunsaEntity, CoverEntity):
     @property
     def current_cover_position(self) -> int:
         """Return current position of cover."""
-        # Blind position range is [-100, 100] where -100 is closed right or down,
-        # 100 is closed left or up and 0 is fully open.
-        return CLOSED_POSITION - abs(self.device.get(ATTR_POSITION))
+        return CLOSED_POSITION - abs(self.current_absolute_position)
+
+    @property
+    def current_absolute_position(self) -> int:
+        """
+        Return current absolute position of cover.
+        Blind position range is [-100, 100] where -100 is closed left or up,
+        100 is closed right or down and 0 is fully open.
+        """
+        return self.device.get(ATTR_POSITION)
 
     @property
     def is_closed(self) -> bool:
         """Return true if cover is closed, else False."""
         # Position 0 in Sunsa with means fully open
         return abs(self.current_cover_position) == OPEN_POSITION
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        """Return the detailed device state attributes."""
+        return {
+            ATTR_CURRENT_ABSOLUTE_POSITION: self.current_absolute_position,
+        }
 
     @property
     def default_closing_direction(self) -> int:
