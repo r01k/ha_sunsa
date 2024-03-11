@@ -38,12 +38,6 @@
   },
   "entity": {
     "sensor": {
-      "battery_level": {
-        "name": "Battery level"
-      },
-      "temperature": {
-        "name": "Temperature"
-      },
       "default_smart_home_direction": {
         "name": "Default smart home direction",
         "state": {
@@ -52,7 +46,11 @@
         }
       },
       "blind_type": {
-        "name": "Blind type"
+        "name": "Blind type",
+        "state": {
+          "vertical": "Vertical",
+          "horizontal": "Horizontal"
+        }
       }
     }
   },

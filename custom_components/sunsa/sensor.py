@@ -41,14 +41,12 @@ class SunsaSensorEntityDescription(SensorEntityDescription):
 SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
     SunsaSensorEntityDescription(
         key="batteryPercentage",
-        translation_key=ATTR_BATTERY_LEVEL,
         device_class=SensorDeviceClass.BATTERY,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SunsaSensorEntityDescription(
         key=ATTR_TEMPERATURE,
-        translation_key=ATTR_TEMPERATURE,
         device_class=SensorDeviceClass.TEMPERATURE,
         native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
         state_class=SensorStateClass.MEASUREMENT,
@@ -65,7 +63,7 @@ SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
         key=BLIND_TYPE,
         translation_key="blind_type",
         entity_category=EntityCategory.DIAGNOSTIC,
-        state_fn=lambda data: data[TEXT]
+        state_fn=lambda data: data[TEXT].lower()
     ),
 )
 
