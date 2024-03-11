@@ -38,16 +38,22 @@
     },
     "entity": {
         "sensor": {
-          "default_smart_home_direction": {
-            "name": "Dirección por defecto",
-            "state": {
-              "right": "Derecha",
-              "left": "Izquierda"
+            "battery_level": {
+                "name": "Nivel de batería"
+            },
+            "temperature": {
+                "name": "Temperatura"
+            },
+            "default_smart_home_direction": {
+                "name": "Dirección por defecto",
+                "state": {
+                    "right": "Derecha",
+                    "left": "Izquierda"
+                }
+            },
+            "blind_type": {
+                "name": "Tipo de persiana"
             }
-          },
-          "blind_type": {
-            "name": "Tipo de persiana"
-          }
         }
     },
     "services": {
