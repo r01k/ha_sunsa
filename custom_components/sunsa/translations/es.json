@@ -38,9 +38,6 @@
     },
     "entity": {
         "sensor": {
-            "battery_level": {
-                "name": "Nivel de batería"
-            },
             "temperature": {
                 "name": "Temperatura"
             },

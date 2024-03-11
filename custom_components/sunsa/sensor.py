@@ -16,8 +16,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
-    UnitOfTemperature, EntityCategory, CONF_NAME, PERCENTAGE, ATTR_TEMPERATURE,
-    ATTR_BATTERY_LEVEL
+    UnitOfTemperature, EntityCategory, CONF_NAME, PERCENTAGE, ATTR_TEMPERATURE
 )
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -41,7 +40,6 @@ class SunsaSensorEntityDescription(SensorEntityDescription):
 SENSORS: tuple[SunsaSensorEntityDescription, ...] = (
     SunsaSensorEntityDescription(
         key="batteryPercentage",
-        translation_key=ATTR_BATTERY_LEVEL,
         device_class=SensorDeviceClass.BATTERY,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
