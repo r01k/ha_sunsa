@@ -1,69 +1,72 @@
 {
-    "config": {
-        "abort": {
-            "already_configured": "Account is already configured",
-            "reauth_successful": "Re-authentication was successful"
-        },
-        "error": {
-            "cannot_connect": "Failed to connect. Details: {error_detail}",
-            "invalid_auth": "Invalid authentication.",
-            "unknown": "Unexpected error. Details: {error_detail}"
-        },
-        "step": {
-            "user": {
-                "title": "Add devices from Sunsa account",
-                "data": {
-                    "email": "Email",
-                    "user_id": "User Id",
-                    "api_key": "API key"
-                },
-                "data_description": {
-                    "email": "Sunsa account email",
-                    "user_id": "Numeric Sunsa API User Id",
-                    "api_key": "Sunsa API key"
-                }
-            },
-            "reauth_confirm": {
-                "title": "Reauthenticate to Sunsa account",
-                "data": {
-                    "user_id": "User Id",
-                    "api_key": "API key"
-                },
-                "data_description": {
-                    "user_id": "Numeric Sunsa API User Id",
-                    "api_key": "Sunsa API key"
-                }
-            }
-        }
+  "config": {
+    "abort": {
+      "already_configured": "Account is already configured",
+      "reauth_successful": "Re-authentication was successful"
     },
-    "entity": {
-        "sensor": {
-          "default_smart_home_direction": {
-            "name": "Default smart home direction",
-            "state": {
-              "right": "Right",
-              "left": "Left"
-            }
-          },
-          "blind_type": {
-            "name": "Blind type",
-            "state": {
-              "vertical": "Vertical",
-              "horizontal": "Horizontal"
-            }
-          }
-        }
+    "error": {
+      "cannot_connect": "Failed to connect. Details: {error_detail}",
+      "invalid_auth": "Invalid authentication.",
+      "unknown": "Unexpected error. Details: {error_detail}"
     },
-    "services": {
-        "set_absolute_position": {
-          "name": "Set absolute position",
-          "description": "Moves a Sunsa blind to any position from closed backwards to closed forwards.",
-          "fields": {
-            "position": {
-              "name": "Position",
-              "description": "New position (0: open, -100: closed backwards, 100: closed forwards)."
-            }
-          }
+    "step": {
+      "user": {
+        "title": "Add devices from Sunsa account",
+        "data": {
+          "email": "Email",
+          "user_id": "User Id",
+          "api_key": "API key"
+        },
+        "data_description": {
+          "email": "Sunsa account email",
+          "user_id": "Numeric Sunsa API User Id",
+          "api_key": "Sunsa API key"
         }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate to Sunsa account",
+        "data": {
+          "user_id": "User Id",
+          "api_key": "API key"
+        },
+        "data_description": {
+          "user_id": "Numeric Sunsa API User Id",
+          "api_key": "Sunsa API key"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "default_smart_home_direction": {
+        "name": "Default smart home direction",
+        "state": {
+          "right": "Right",
+          "left": "Left",
+          "down": "Down",
+          "up": "Up"
+        }
+      },
+      "blind_type": {
+        "name": "Blind type",
+        "state": {
+          "vertical": "Vertical",
+          "horizontal": "Horizontal",
+          "mini": "Mini"
+        }
+      }
+    }
+  },
+  "services": {
+    "set_absolute_position": {
+      "name": "Set absolute position",
+      "description": "Moves a Sunsa blind to any position from closed backwards to closed forwards.",
+      "fields": {
+        "position": {
+          "name": "Position",
+          "description": "New position (0: open, -100: closed backwards, 100: closed forwards)."
+        }
+      }
+    }
   }
 }

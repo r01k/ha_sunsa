@@ -136,7 +136,12 @@ class SunsaCover(SunsaEntity, CoverEntity):
     def icon(self) -> str | None:
         """Icon of the entity, based on blind type."""
         if self.device is not None:
-            icon_name = f"mdi:blinds-{self.device[BLIND_TYPE]["text"].lower()}"
+            if self.device[BLIND_TYPE]["text"].lower() == "vertical":
+                orientation = "vertical"
+            else:
+                orientation = "horizontal"
+
+            icon_name = f"mdi:blinds-{orientation}"
             if self.is_closed:
                 icon_name += "-closed"
             return icon_name
