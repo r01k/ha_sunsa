@@ -108,13 +108,14 @@ class SunsaSensor(SunsaEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
-        data = self.device.get(self.entity_description.key)
+        if self.device is not None:
+            data = self.device.get(self.entity_description.key)
 
-        if self.entity_description.state_fn is not None:
-            value = self.entity_description.state_fn(data)
-        else:
-            value = data
+            if self.entity_description.state_fn is not None:
+                value = self.entity_description.state_fn(data)
+            else:
+                value = data
 
-        self._attr_native_value = value
+            self._attr_native_value = value
 
         self.async_write_ha_state()

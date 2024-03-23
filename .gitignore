@@ -9,3 +9,5 @@ dist/
 *.spec
 Temp.ink
 venv.bat
+refs/
+tests/

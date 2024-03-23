@@ -50,20 +50,25 @@ system.
 4. Continue on step 5 under [HACS](#hacs).
 
 ## FAQ
-- *I added/deleted new wands. How do I update Home Assistant?*
+- *The blinds close the wrong way.*
+  
+  Ensure that the `Default Smart Home Direction` setting of the wand in the Sunsa app 
+  indicates the default closing direction.
+
+- *I added/deleted new wands on my Sunsa account. How do I update Home Assistant?*
 
   If you added new wands, reload the integration for them to be added automatically. 
-  If wands were removed from your Sunsa account, they'll be marked unavailable in Home 
-  Assistant and you can remove them manually.
+  If wands were removed from your Sunsa account, they'll be marked `unavailable` in Home 
+  Assistant and you can delete them manually.
+
 - *There is a delay for the wands to move and for Home Assistant to update the status.*
 
-  This is expected as per the polling interval of 20 seconds recommended by Sunsa. The 
-  delay should be at most 20 seconds. Note that all cloud-polling integrations present 
-  some delay.
+  This is expected as per the polling interval of 20 seconds recommended by Sunsa. All 
+  cloud-polling integrations present some delay.
 
 ## Troubleshooting
 I developed and tested the integration with several wands of model SUNSA SW1. Correct 
-functionality is not guaranteed with different (potentially older) models. In any case, 
+functionality is not guaranteed with different (maybe older) models. In any case, 
 open an issue here if you see any problem. Remember to always enable debug logging for the
 integration when troubleshooting:
 ```

@@ -32,7 +32,7 @@ class SunsaEntity(CoordinatorEntity[SunsaDataUpdateCoordinator], Entity):
 
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, device_name)},
-            name=device_name,
+            name=device_name,  # Entity is part of the cover device
             manufacturer=DOMAIN.title(),
         )
         self._sunsa_device_id = sunsa_device_id
