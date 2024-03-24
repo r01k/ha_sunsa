@@ -23,7 +23,12 @@ In order to use the Sunsa cloud API you need to activate it for your account:
 ## Installation
 ### HACS
 The recommended method to install this integration is through the
-[Home Assistant Community Store (HACS)](https://hacs.xyz/):
+[Home Assistant Community Store (HACS)](https://hacs.xyz/). Once HACS is setup, you can use
+[My Home Assistant](https://www.home-assistant.io/integrations/my/) to
+[automatically add the Sunsa integration repository](http://localhost:8123/hacs/repository?owner=r01k&repository=ha_sunsa&category=integration) to 
+HACS, then continue on Step 5 below after restarting Home Assistant.
+
+Or to add the integration to HACS without using My Home Assistant:
 
 1. Inside HACS, go to `Integrations` > Click the three-dot overflow menu `⋮` on the upper 
 right and click `Custom repositories`.
