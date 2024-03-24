@@ -23,21 +23,23 @@ In order to use the Sunsa cloud API you need to activate it for your account:
 ## Installation
 ### HACS
 The recommended method to install this integration is through the
-[Home Assistant Community Store (HACS)](https://hacs.xyz/). Once HACS is setup, you can use
-[My Home Assistant](https://www.home-assistant.io/integrations/my/) to
-[automatically add the Sunsa integration repository](http://localhost:8123/hacs/repository?owner=r01k&repository=ha_sunsa&category=integration) to 
-HACS, then continue on Step 5 below after restarting Home Assistant.
+[Home Assistant Community Store (HACS)](https://hacs.xyz/). Once HACS is setup, if you use
+[My Home Assistant](https://www.home-assistant.io/integrations/my/) you can
+[automatically add the Sunsa integration repository](https://my.home-assistant.io/redirect/hacs_repository/?owner=r01k&repository=ha_sunsa&category=integration) 
+to HACS, then continue on step 6 below after restarting Home Assistant.
 
 Or to add the integration to HACS without using My Home Assistant:
 
 1. Inside HACS, go to `Integrations` > Click the three-dot overflow menu `⋮` on the upper 
 right and click `Custom repositories`.
 2. In the `Custom repositories` dialog add the repository URL 
-https://github.com/r01k/ha_sunsa. For `Category` select `Integration`.
-3. Click `ADD`.
+`https://github.com/r01k/ha_sunsa`. For `Category` select `Integration`.
+3. Click `ADD`. The integration `Sunsa` will be loaded in HACS.
+4. Click on the integration and then `Download`. Select the latest version. Do not select
+`Master`.
 4. Restart Home Assistant.
-5. Go to the `Integrations` page and add the `Sunsa` integration following the 
-configuration wizard. You'll need three pieces of information:
+5. Go to `Settings > Devices and services > Integrations` and add `Sunsa` following the 
+`ADD INTEGRATION` wizard. You'll need three pieces of information:
 	- Your Sunsa account email. (This is only used in the integration to group the devices
    and not for authentication).
 	- Your Sunsa API User ID. See [Prerequisites](#prerequisites).
@@ -47,12 +49,12 @@ configuration wizard. You'll need three pieces of information:
 Alternatively, you can install the integration manually (advanced). You don't need HACS to
 do this but then managing 
 integration updates must be done manually too.
-1. Download the `sunsa` folder in the Master branch of the GitHub repository: 
-https://github.com/r01k/ha_sunsa/tree/master/custom_components/sunsa.
-2. Copy the `sunsa` folder to the `custom_components` folder in your Home Assistant 
-system.
+1. Download the `sunsa.zip` archive from the [latest release](https://github.com/r01k/ha_sunsa/releases/latest).
+   (You may have to expand `Assets` at the bottom of the release section).
+2. Unpack the zip contents inside the `config/custom_components` folder in your Home Assistant 
+system. You should end up with a `config/custom_components/sunsa` folder.
 3. Restart Home Assistant.
-4. Continue on step 5 under [HACS](#hacs).
+4. Continue above on step 6 under [HACS](#hacs).
 
 ## FAQ
 - *The blinds close the wrong way.*
