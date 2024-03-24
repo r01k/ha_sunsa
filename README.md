@@ -67,10 +67,10 @@ system.
   cloud-polling integrations present some delay.
 
 ## Troubleshooting
-I developed and tested the integration with several wands of model SUNSA SW1. Correct 
+This integration was developed and tested with several wands of model SUNSA SW1. Correct 
 functionality is not guaranteed with different (maybe older) models. In any case, 
-open an issue here if you see any problem. Remember to always enable debug logging for the
-integration when troubleshooting:
+open an issue here if you see any problem. Ensure that the wands have up-to-date firmware
+and always enable debug logging for the integration when troubleshooting:
 ```
 logger:
   default: info

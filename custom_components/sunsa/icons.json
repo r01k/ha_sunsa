@@ -1,6 +1,6 @@
 {
   "services": {
-    "set_position": "mdi:blinds-horizontal"
+    "set_absolute_position": "mdi:gesture-swipe-vertical"
   },
   "entity": {
     "sensor": {
@@ -16,9 +16,9 @@
       "blind_type": {
         "default": "mdi:eye",
         "state": {
-          "vertical": "mdi:blinds-vertical-closed",
-          "horizontal": "mdi:blinds-horizontal-closed",
-          "mini": "mdi:blinds-horizontal-closed"
+          "vertical": "mdi:arrow-split-vertical",
+          "horizontal": "mdi:arrow-split-horizontal",
+          "mini": "mdi:arrow-split-horizontal"
         }
       }
     }
