@@ -1,5 +1,26 @@
 {
   "services": {
     "set_position": "mdi:blinds-horizontal"
+  },
+  "entity": {
+    "sensor": {
+      "default_smart_home_direction": {
+        "default": "mdi:eye",
+        "state": {
+          "right": "mdi:arrow-right",
+          "left": "mdi:arrow-left",
+          "down": "mdi:arrow-down",
+          "up": "mdi:arrow-up"
+        }
+      },
+      "blind_type": {
+        "default": "mdi:eye",
+        "state": {
+          "vertical": "mdi:blinds-vertical-closed",
+          "horizontal": "mdi:blinds-horizontal-closed",
+          "mini": "mdi:blinds-horizontal-closed"
+        }
+      }
+    }
   }
 }

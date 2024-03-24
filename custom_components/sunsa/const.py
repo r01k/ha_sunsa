@@ -24,4 +24,5 @@ ATTR_CURRENT_ABSOLUTE_POSITION: Final = "current_absolute_position"
 BLIND_TYPE: Final = "blindType"
 IS_CONNECTED: Final = "isConnected"
 
-UPDATE_INTERVAL = timedelta(seconds=15)
+UPDATE_INTERVAL = timedelta(seconds=20)
+UPDATE_TIMEOUT = 15

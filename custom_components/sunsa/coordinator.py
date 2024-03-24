@@ -17,7 +17,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .const import LOGGER, UPDATE_INTERVAL, DOMAIN, IDDEVICE, USER_ID
+from .const import LOGGER, UPDATE_INTERVAL, UPDATE_TIMEOUT, DOMAIN, IDDEVICE, USER_ID
 
 
 class SunsaDataUpdateCoordinator(DataUpdateCoordinator):
@@ -40,7 +40,7 @@ class SunsaDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self) -> dict[str, Any]:
         """Fetch devices data from Sunsa."""
         try:
-            async with asyncio.timeout(15):
+            async with asyncio.timeout(UPDATE_TIMEOUT):
                 devices = await self.sunsa.get_devices()
         except PysunsaError as error:
             if error.status_code == 401:
