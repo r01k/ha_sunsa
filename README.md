@@ -15,20 +15,19 @@ entities of type blind.
 
 
 ## Prerequisites
-In order to use the Sunsa cloud API you need to activate it for your account:
+In order to use the integration, activate the Sunsa cloud API for your account:
 1. Inside the Sunsa app, go to `Setttings` > `API Settings`  and turn on the toggle.
-2. Take note of your  `API Key` and `User ID`.
+2. Take note of the  `API Key` and `User ID`.
 
 
 ## Installation
 ### HACS
 The recommended method to install this integration is through the
-[Home Assistant Community Store (HACS)](https://hacs.xyz/). Once HACS is setup, if you use
-[My Home Assistant](https://www.home-assistant.io/integrations/my/) you can
+[Home Assistant Community Store (HACS)](https://hacs.xyz/). Once HACS is setup, you can
 [automatically add the Sunsa integration repository](https://my.home-assistant.io/redirect/hacs_repository/?owner=r01k&repository=ha_sunsa&category=integration) 
 to HACS, then continue on step 6 below after restarting Home Assistant.
 
-Or to add the integration to HACS without using My Home Assistant:
+Or to add the integration to HACS manually:
 
 1. Inside HACS, go to `Integrations` > Click the three-dot overflow menu `⋮` on the upper 
 right and click `Custom repositories`.
@@ -36,8 +35,8 @@ right and click `Custom repositories`.
 `https://github.com/r01k/ha_sunsa`. For `Category` select `Integration`.
 3. Click `ADD`. The integration `Sunsa` will be loaded in HACS.
 4. Click on the integration and then `Download`. Select the latest version. Do not select
-`Master`.
-4. Restart Home Assistant.
+`master`.
+4. Do a full restart of Home Assistant.
 5. Go to `Settings > Devices and services > Integrations` and add `Sunsa` following the 
 `ADD INTEGRATION` wizard. You'll need three pieces of information:
 	- Your Sunsa account email. (This is only used in the integration to group the devices
@@ -45,7 +44,7 @@ right and click `Custom repositories`.
 	- Your Sunsa API User ID. See [Prerequisites](#prerequisites).
 	- Your Sunsa API Key. See [Prerequisites](#prerequisites).
 
-### Manual Installation
+### Manual Installation (without HACS)
 Alternatively, you can install the integration manually (advanced). You don't need HACS to
 do this but then managing 
 integration updates must be done manually too.
@@ -53,7 +52,7 @@ integration updates must be done manually too.
    (You may have to expand `Assets` at the bottom of the release section).
 2. Unpack the zip contents inside the `config/custom_components` folder in your Home Assistant 
 system. You should end up with a `config/custom_components/sunsa` folder.
-3. Restart Home Assistant.
+3. Do a full restart of Home Assistant.
 4. Continue above on step 6 under [HACS](#hacs).
 
 ## FAQ
@@ -76,7 +75,7 @@ system. You should end up with a `config/custom_components/sunsa` folder.
 ## Troubleshooting
 This integration was developed and tested with several wands of model SUNSA SW1. Correct 
 functionality is not guaranteed with different (maybe older) models. In any case, 
-open an issue here if you see any problem. Ensure that the wands have up-to-date firmware
+[open an issue](https://github.com/r01k/ha_sunsa/issues) if you encounter a problem. Ensure that the wands have up-to-date firmware
 and always enable debug logging for the integration when troubleshooting:
 ```
 logger:
