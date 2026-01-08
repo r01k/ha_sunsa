@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "config_flow": true,
   "documentation": "https://github.com/r01k/ha_sunsa",
-  "requirements": ["pysunsa @ git+https://github.com/r01k/Pysunsa@master"],
+  "requirements": ["pysunsa @ git+https://github.com/r01k/Pysunsa@c44a5ce690e559bf11416cc8de479616cd6a9462"],
   "codeowners": ["@r01k"],
   "iot_class": "cloud_polling"
 }
