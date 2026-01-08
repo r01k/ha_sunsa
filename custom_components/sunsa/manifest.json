@@ -2,7 +2,7 @@
   "domain": "sunsa",
   "name": "Sunsa",
   "integration_type": "hub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "config_flow": true,
   "documentation": "https://github.com/r01k/ha_sunsa",
   "requirements": ["pysunsa @ git+https://github.com/r01k/Pysunsa@c44a5ce690e559bf11416cc8de479616cd6a9462"],
